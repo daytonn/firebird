@@ -1,5 +1,8 @@
 defmodule Mix.Tasks.Gen do
   @moduledoc "Generate a firebird template"
+  @shortdoc "Generate a firebird template"
+  @requirements ["app.config"]
+
   use Mix.Task
 
   alias Firebird.Env
