@@ -9,7 +9,8 @@ defmodule Firebird.Templates.Context do
     Path.expand("context.eex", "lib/firebird/templates/context"),
     [
       :app_name,
-      :repo_name
+      :repo_name,
+      :schema_name
     ]
   )
 
@@ -17,7 +18,8 @@ defmodule Firebird.Templates.Context do
     app_slug = Env.get(:app_name, "MyApp")
     app_name = Inflex.camelize(app_slug)
     context_name = "#{Inflex.underscore(repo_name)}.ex"
-    content = generate(app_name, repo_name)
+    schema_name = Inflex.singularize(repo_name)
+    content = generate(app_name, repo_name, schema_name)
     path = Path.expand("lib/#{app_slug}/repos")
     filepath = "#{path}/#{context_name}"
 
