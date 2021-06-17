@@ -29,7 +29,7 @@ defmodule Firebird.Templates.Migration do
         app_name,
         repo_name,
         options,
-        ":#{table_name}",
+        table_name,
         fields(attributes)
       )
 
