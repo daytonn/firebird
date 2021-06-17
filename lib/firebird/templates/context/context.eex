@@ -1,0 +1,12 @@
+defmodule <%= app_name %>.Repos.<%= repo_name %> do
+  use EctoResource
+
+  import Ecto.Query, warn: false
+
+  alias <%= app_name %>.Repo
+  alias <%= app_name %>.Schemas.<%= repo_name %>
+
+  using_repo(Repo) do
+    resource(<%= repo_name %>)
+  end
+end

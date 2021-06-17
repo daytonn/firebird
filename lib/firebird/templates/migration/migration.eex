@@ -1,0 +1,12 @@
+defmodule <%= app_name %>.Repo.Migrations.Create<%= repo_name %> do
+  use Ecto.Migration
+
+  def change do
+    create table(<%= table_name %><%= options %>) do
+      <%= for field <- fields do %><%= field %>
+      <% end %>
+      timestamps()
+    end
+
+  end
+end

@@ -18,6 +18,30 @@ defmodule Firebird.Templates.Schema do
     ]
   )
 
+  def create_schema([schema_name | [table_name | attributes]]) do
+    [binary_id: binary_id] = Env.get(:generators, binary_id: false)
+    instance_name = Inflex.singularize(table_name)
+    app_name = Inflex.camelize(Env.get(:app_name, "MyApp"))
+    app_directory = Inflex.underscore(app_name)
+    path = Path.expand("lib/#{app_directory}/schemas")
+    filepath = "#{path}/#{instance_name}.ex"
+
+    content =
+      generate(
+        app_name,
+        schema_name,
+        binary_id,
+        table_name,
+        instance_name,
+        fields(attributes),
+        validated_attributes(attributes)
+      )
+
+    File.mkdir_p!(path)
+    File.write!(filepath, content)
+    {:ok, filepath}
+  end
+
   def fields(nil), do: []
   def fields([]), do: []
   def fields(attributes), do: Enum.map(attributes, &create_field(&1))
