@@ -1,6 +1,5 @@
 defmodule Mix.Tasks.Fbx.Gen do
   @moduledoc "Generate a firebird template"
-  @shortdoc "Generate a firebird template"
   @requirements ["app.config"]
 
   use Mix.Task
@@ -11,6 +10,7 @@ defmodule Mix.Tasks.Fbx.Gen do
   alias Firebird.Templates.Schema
 
   @impl Mix.Task
+  @shortdoc "Generate a firebird template"
   def run(["schema" | args]) do
     args
     |> Schema.create_schema()
