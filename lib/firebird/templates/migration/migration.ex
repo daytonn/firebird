@@ -30,7 +30,7 @@ defmodule Firebird.Templates.Migration do
         repo_name,
         options,
         table_name,
-        fields(attributes)
+        fields(attributes, binary_id)
       )
 
     filename = Calendar.strftime(DateTime.utc_now(), "%Y%m%d%H%M%S") <> "_create_#{filename}"
@@ -47,8 +47,10 @@ defmodule Firebird.Templates.Migration do
   def options(binary_id: false), do: nil
   def options(binary_id: true), do: ", primary_key: false"
 
-  def fields(nil), do: []
-  def fields([]), do: []
+  def fields(nil, false), do: []
+  def fields(nil, true), do: ["id:binary_id"]
+  def fields([], true), do: ["id:binary_id"]
+  def fields([], false), do: []
 
   def fields(attributes) do
     :generators
