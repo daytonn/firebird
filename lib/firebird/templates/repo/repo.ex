@@ -6,7 +6,7 @@ defmodule Firebird.Templates.Repo do
   EEx.function_from_file(
     :def,
     :generate,
-    Path.expand("context.eex", "lib/firebird/templates/context"),
+    Path.expand("repo.eex", "lib/firebird/templates/repo"),
     [
       :app_name,
       :repo_name,
