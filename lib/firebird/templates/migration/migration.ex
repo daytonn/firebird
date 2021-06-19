@@ -47,9 +47,9 @@ defmodule Firebird.Templates.Migration do
   def options(binary_id: false), do: nil
   def options(binary_id: true), do: ", primary_key: false"
 
-  def fields(nil, false), do: []
-  def fields(nil, true), do: ["id:binary_id"]
-  def fields([], true), do: ["id:binary_id"]
+  def fields(nil, false), do: fields([], false)
+  def fields(nil, true), do: fields([], true)
+  def fields([], true), do: [create_field(["id", "binary_id"])]
   def fields([], false), do: []
 
   def fields(attributes) do
