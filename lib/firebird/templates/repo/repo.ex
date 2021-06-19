@@ -1,4 +1,4 @@
-defmodule Firebird.Templates.Context do
+defmodule Firebird.Templates.Repo do
   require EEx
 
   alias Firebird.Env

@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Fbx.Gen.Repo do
+defmodule Mix.Tasks.Fbx.Gen.Context do
   @shortdoc "Generate a firebird template"
 
   @moduledoc """
