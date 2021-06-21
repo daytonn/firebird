@@ -52,15 +52,12 @@ defmodule Firebird.Templates.Migration do
   def fields([], true), do: [create_field(["id", "binary_id"])]
   def fields([], false), do: []
 
-  def fields(attributes) do
-    :generators
-    |> Env.get(binary_id: false)
-    |> get_default_attributes(attributes)
+  def fields(attributes, true) do
+    ["id:binary_id" | attributes]
     |> Enum.map(&create_field(&1))
   end
 
-  def get_default_attributes([binary_id: false], attributes), do: attributes
-  def get_default_attributes([binary_id: true], attributes), do: ["id:binary_id" | attributes]
+  def fields(attributes, false), do: Enum.map(&create_field(&1))
 
   defp create_field(attr) when is_binary(attr) do
     create_field(String.split(attr, ":"))
