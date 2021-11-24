@@ -57,7 +57,7 @@ defmodule Firebird.Templates.Migration do
     |> Enum.map(&create_field(&1))
   end
 
-  def fields(attributes, false), do: Enum.map(&create_field(&1))
+  def fields(attributes, false), do: Enum.map(attributes, &create_field(&1))
 
   defp create_field(attr) when is_binary(attr) do
     create_field(String.split(attr, ":"))
