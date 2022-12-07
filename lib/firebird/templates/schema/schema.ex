@@ -61,7 +61,7 @@ defmodule Firebird.Templates.Schema do
   end
 
   defp create_field([field, "references", _] = list) when is_list(list) do
-    "field :#{field}, #{reference_type(Env.get(:generators, []))}, null: false"
+    "field :#{field}, #{reference_type(Env.get(:generators, []))}"
   end
 
   defp create_field([field, type, "null"] = list) when is_list(list) do
@@ -69,7 +69,7 @@ defmodule Firebird.Templates.Schema do
   end
 
   defp create_field([field, type] = list) when is_list(list) do
-    "field :#{field}, :#{type}, null: false"
+    "field :#{field}, :#{type}"
   end
 
   defp reference_type(binary_id: true), do: ":binary_id"
