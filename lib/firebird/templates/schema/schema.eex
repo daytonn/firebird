@@ -1,4 +1,4 @@
-defmodule <%= app_name %>.Schemas.<%= schema_name %> do
+defmodule <%= app_name %>.Schema.<%= schema_name %> do
   use Ecto.Schema
   import Ecto.Changeset
 

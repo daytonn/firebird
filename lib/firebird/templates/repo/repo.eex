@@ -1,4 +1,4 @@
-defmodule <%= app_name %>.Repos.<%= repo_name %> do
+defmodule <%= app_name %>.Repo.<%= repo_name %> do
   use EctoResource
 
   import Ecto.Query, warn: false
