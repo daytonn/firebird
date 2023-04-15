@@ -21,9 +21,12 @@ defmodule Firebird.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:inflex, "~> 2.1"}
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:inflex, "~> 2.1"},
+      {:phoenix, "~> 1.7.1"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_html, "~> 3.3"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_view, "~> 0.18.16"}
     ]
   end
 end
