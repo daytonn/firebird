@@ -7,4 +7,5 @@ defmodule Utility.Result do
 
   def ok(v), do: {:ok, v}
   def error(v), do: {:error, v}
+  def noreply(v), do: {:noreply, v}
 end

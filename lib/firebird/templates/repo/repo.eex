@@ -7,6 +7,6 @@ defmodule <%= app_name %>.Repo.<%= repo_name %> do
   alias <%= app_name %>.Schemas.<%= schema_name %>
 
   using_repo(Repo) do
-    resource(<%= schema_name %>)
+<%= if suffix do %>    resource(<%= schema_name %>)<% else %>    resource(<%= schema_name %>, suffix: false)<% end %>
   end
 end

@@ -10,16 +10,18 @@ defmodule Firebird.Templates.Repo do
     [
       :app_name,
       :repo_name,
-      :schema_name
+      :schema_name,
+      :suffix
     ]
   )
 
   def create_context([repo_name | _]) do
     app_slug = Env.get(:app_name, "MyApp")
+    [suffix: suffix] = Env.get(:resources, suffix: true)
     app_name = Inflex.camelize(app_slug)
     context_name = "#{Inflex.underscore(repo_name)}.ex"
     schema_name = Inflex.singularize(repo_name)
-    content = generate(app_name, repo_name, schema_name)
+    content = generate(app_name, repo_name, schema_name, suffix)
     path = Path.expand("lib/#{app_slug}/repos")
     filepath = "#{path}/#{context_name}"
 

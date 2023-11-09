@@ -63,8 +63,12 @@ defmodule Firebird.Templates.Migration do
     create_field(String.split(attr, ":"))
   end
 
-  defp create_field([field, "references", _] = list) when is_list(list) do
-    "add :#{field}, #{reference_type(Env.get(:generators, []))}, null: false"
+  defp create_field(["id", _]) do
+    "add :id, :binary_id, primary_key: true, null: false"
+  end
+
+  defp create_field([field, "references", table] = list) when is_list(list) do
+    "add :#{field}, references(:#{table}#{reference_type(Env.get(:generators, []))}), null: false"
   end
 
   defp create_field([field, type, "null"] = list) when is_list(list) do
@@ -75,8 +79,8 @@ defmodule Firebird.Templates.Migration do
     "add :#{field}, :#{translate_type(type)}, null: false"
   end
 
-  defp reference_type(binary_id: true), do: ":binary_id"
-  defp reference_type(_), do: ":integer"
+  defp reference_type(binary_id: true), do: ", type: :binary_id"
+  defp reference_type(_), do: nil
 
   defp translate_type("int"), do: "integer"
   defp translate_type("string"), do: "text"

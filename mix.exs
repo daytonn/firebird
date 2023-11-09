@@ -22,11 +22,11 @@ defmodule Firebird.MixProject do
   defp deps do
     [
       {:inflex, "~> 2.1"},
-      {:phoenix, "~> 1.7.1"},
+      {:phoenix, "~> 1.7.10"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.18.16"}
+      {:phoenix_live_view, "~> 0.20.1"}
     ]
   end
 end
